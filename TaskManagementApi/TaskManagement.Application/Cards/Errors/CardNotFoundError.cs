@@ -1,6 +1,6 @@
 using TaskManagement.Core.ErrorManagement;
 
-namespace TaskManagement.Application.Tasks.Errors;
+namespace TaskManagement.Application.Cards.Errors;
 
 public record CardNotFoundError(Guid CardId) : IError
 {

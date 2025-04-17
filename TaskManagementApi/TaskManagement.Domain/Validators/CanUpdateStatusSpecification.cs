@@ -4,20 +4,10 @@ namespace TaskManagement.Domain.Validators;
 
 internal sealed class CanUpdateStatusSpecification : ISpecification<Card>
 {
-    public Result<bool> IsSatisfiedBy(Card card)
-    {
-        if (card.Status == CardStatus.Removed)
+    public Result<bool> IsSatisfiedBy(Card card) =>
+        card.Status switch
         {
-            return Result<bool>.Failure(
-                new DomainError("Card is Removed! No changes allowed"));
-        }
-
-        if (card.Status == CardStatus.Done)
-        {
-            return Result<bool>.Failure(
-                new DomainError("Card is already done! No changes allowed"));
-        }
-
-        return true;
-    }
+            CardStatus.Done => Result<bool>.Failure(new DomainError("Card is already in done status! No changes allowed")),
+            _ => true,
+        };
 }

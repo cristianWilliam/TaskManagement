@@ -1,7 +1,5 @@
 using System.Reflection;
-
 using Microsoft.Extensions.DependencyInjection;
-
 using TaskManagement.Application.Providers;
 using TaskManagement.Domain;
 

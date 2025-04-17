@@ -1,12 +1,16 @@
+using System.Text.Json.Serialization;
+using TaskManagement.Api.Extensions;
 using TaskManagement.Application;
 using TaskManagement.Infra;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    });
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -14,14 +18,12 @@ builder.Services.AddSwaggerGen();
 // Add Layers
 builder.Services.AddInfraLayer(builder.Configuration);
 builder.Services.AddApplication();
+builder.Services.AddPresentationLayer();
 
 // Enable cors
 builder.Services.AddCors(policy =>
 {
-    policy.AddDefaultPolicy(policyBuilder =>
-    {
-        policyBuilder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
-    });
+    policy.AddDefaultPolicy(policyBuilder => { policyBuilder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin(); });
 });
 
 var app = builder.Build();

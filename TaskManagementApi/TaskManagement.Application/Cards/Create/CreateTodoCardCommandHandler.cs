@@ -1,19 +1,13 @@
 using MediatR;
-
 using TaskManagement.Application.Providers;
 using TaskManagement.Core.ErrorManagement;
 using TaskManagement.Domain;
-using TaskManagement.Domain.ValueObjects;
 using TaskManagement.Infra;
 
-namespace TaskManagement.Application.Tasks.Create;
-
-public record CreateTodoCardCommand(
-    CardDescription Description,
-    CardResponsible Responsible) : IRequest<Result<CreateTodoCardDto>>;
+namespace TaskManagement.Application.Cards.Create;
 
 internal sealed class CreateTodoCardCommandHandler : IRequestHandler<
-    CreateTodoCardCommand, Result<CreateTodoCardDto>>
+    CreateTodoCardCommand, Result<CardDto>>
 {
     private readonly AppDbContext _context;
     private readonly IDateTimeProvider _dateTimeProvider;
@@ -27,19 +21,24 @@ internal sealed class CreateTodoCardCommandHandler : IRequestHandler<
         _guidProvider = guidProvider;
     }
 
-    public async Task<Result<CreateTodoCardDto>> Handle(
+    public async Task<Result<CardDto>> Handle(
         CreateTodoCardCommand request, CancellationToken cancellationToken)
     {
         var newCardId = _guidProvider.GenerateSequential();
 
-        var newCard = Card.CreateToDoCard(newCardId, request.Description,
+        var newCardResult = Card.CreateToDoCard(newCardId, request.Description,
             request.Responsible, _dateTimeProvider);
+
+        if (newCardResult.IsFailure)
+            return Result<CardDto>.Failure(newCardResult.Errors);
+
+        var newCard = newCardResult.Value!;
 
         await _context.TaskCards.AddAsync(newCard, cancellationToken);
         await _context.SaveChangesAsync(cancellationToken);
 
-        return new CreateTodoCardDto(newCard.Id, newCard.Description.ToString(),
-            newCard.Responsible.ToString(), newCard.CreatedOnUtc,
+        return new CardDto(newCard.Id, newCard.Description.ToString()!,
+            newCard.Responsible.ToString()!, newCard.CreatedOnUtc,
             newCard.Status);
     }
 }

@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TaskManagement.Domain;
 using TaskManagement.Domain.ValueObjects;
 
@@ -30,6 +30,7 @@ internal sealed class TaskCardConfiguration : IEntityTypeConfiguration<Card>
             .IsRequired();
 
         builder.Property(x => x.Status)
+            .HasConversion(new EnumToStringConverter<CardStatus>())
             .IsRequired();
 
         builder.Property(x => x.CreatedOnUtc)

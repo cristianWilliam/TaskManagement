@@ -7,6 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.11.0" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.4"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.20">
             <PrivateAssets>all</PrivateAssets>
@@ -17,6 +18,10 @@
 
     <ItemGroup>
         <ProjectReference Include="..\TaskManagement.Application\TaskManagement.Application.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Cards\" />
     </ItemGroup>
 
 </Project>

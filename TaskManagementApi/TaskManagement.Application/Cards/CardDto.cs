@@ -1,9 +1,9 @@
 using TaskManagement.Domain;
 
-namespace TaskManagement.Application.Tasks.Create;
+namespace TaskManagement.Application.Cards;
 
-public sealed record CreateTodoCardDto(
-    Guid Id,
+public sealed record CardDto(
+    Guid CardId,
     string Description,
     string Responsible,
     DateTime CreationDateUtc,

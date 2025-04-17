@@ -7,7 +7,7 @@ public static class ValidationResultExtensions
     public static Result<T> ToValidationErrorsResult<T>(
         this ValidationResult validationResult)
     {
-        IError[] errors = validationResult.Errors
+        var errors = validationResult.Errors
             .Select(error => new ValidationError(error.ErrorMessage))
             .ToArray<IError>();
 

@@ -1,7 +1,5 @@
 using System.Reflection;
-
 using Microsoft.EntityFrameworkCore;
-
 using TaskManagement.Domain;
 
 namespace TaskManagement.Infra;

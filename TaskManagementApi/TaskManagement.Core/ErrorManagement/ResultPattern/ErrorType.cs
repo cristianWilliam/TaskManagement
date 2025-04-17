@@ -4,5 +4,5 @@ public enum ErrorType
 {
     DomainError = 10,
     ValidationError = 20,
-    NotFoundError = 30
+    NotFoundError = 30,
 }
