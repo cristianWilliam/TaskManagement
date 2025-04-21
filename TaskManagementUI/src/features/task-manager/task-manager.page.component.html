@@ -1,5 +1,5 @@
-@if (todoTasks().length > 0) {
-  <app-task-manager-column columnType="todo" columnTitle="To-Do" [columnData]="todoTasks()"/>
-  <app-task-manager-column columnType="in-progress" columnTitle="In Progress" [columnData]="inProgressTasks()"/>
-  <app-task-manager-column columnType="done" columnTitle="Done" [columnData]="doneTasks()"/>
-}
+<ng-container cdkDropListGroup>
+  <app-task-manager-column columnType="Todo" columnTitle="To-Do" [columnData]="todoTasks()"/>
+  <app-task-manager-column columnType="InProgress" columnTitle="In Progress" [columnData]="inProgressTasks()"/>
+  <app-task-manager-column columnType="Done" columnTitle="Done" [columnData]="doneTasks()"/>
+</ng-container>

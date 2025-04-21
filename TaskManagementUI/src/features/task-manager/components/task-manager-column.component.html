@@ -2,8 +2,18 @@
   {{ columnTitle() }}
 </app-task-manager-header>
 
-<div class="column">
+<div class="column"
+  [id]="columnType()"
+  cdkDropList
+  [cdkDropListData]="columnData()"
+  (cdkDropListDropped)="onDrop($event)"
+  [cdkDropListEnterPredicate]="noDonePredicate"
+>
   @for (card of columnData(); track card.cardId) {
-    <app-task-manager-card [card]="card" />
+    <app-task-manager-card cdkDrag [cdkDragData]="card" [card]="card">
+      <app-task-manager-card-drag-placeholder *cdkDragPlaceholder>
+        Your Task will be at the top of this list
+      </app-task-manager-card-drag-placeholder>
+    </app-task-manager-card>
   }
 </div>

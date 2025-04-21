@@ -1,5 +1,5 @@
 import { Component, HostBinding, input } from '@angular/core';
-import { ColumnType } from '../models/column-type';
+import { CardStatus } from '../models/card-status';
 
 @Component({
   selector: 'app-task-manager-header',
@@ -12,7 +12,7 @@ import { ColumnType } from '../models/column-type';
 })
 export class TaskManagerHeaderComponent {
   // Inputs
-  columnType = input<ColumnType>('todo');
+  columnType = input<CardStatus>('Todo');
 
   // Getters
   @HostBinding('class')

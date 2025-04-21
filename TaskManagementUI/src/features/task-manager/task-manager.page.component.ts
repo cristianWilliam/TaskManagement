@@ -1,10 +1,11 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, computed, effect, inject } from '@angular/core';
 import { TaskManagerColumnComponent } from './components/task-manager-column.component';
 import { TaskService } from './services/task.service';
+import { CdkDropListGroup } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-task-manager-page',
-  imports: [TaskManagerColumnComponent],
+  imports: [TaskManagerColumnComponent, CdkDropListGroup],
   templateUrl: './task-manager.page.component.html',
   styleUrls: ['./task-manager.page.component.scss'],
 })
@@ -16,9 +17,10 @@ export class TaskManagerPageComponent {
   protected inProgressTasks = computed(() => this.tasks().filter((task) => task.status === 'InProgress'));
   protected doneTasks = computed(() => this.tasks().filter((task) => task.status === 'Done'));
 
-  constructor() {
-    console.log(this.inProgressTasks());
+  constructor(){
+    effect(() => {
+      console.log(this.tasks());
+    });
   }
-
 }
 

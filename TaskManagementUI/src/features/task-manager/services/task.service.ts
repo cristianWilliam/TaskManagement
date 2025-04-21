@@ -1,5 +1,6 @@
 import { Injectable, signal } from "@angular/core";
 import { Card } from "../models/card.model";
+import { CardStatus } from "../models/card-status";
 
 @Injectable({
   providedIn: 'root',
@@ -102,5 +103,9 @@ export class TaskService {
         description: 'Task 12',
       },
     ];
+  }
+
+  public updateTaskStatus(cardId: string, newStatus: CardStatus) {
+    this.tasks.update((tasks) => tasks.map((task) => task.cardId === cardId ? { ...task, status: newStatus } : task));
   }
 }

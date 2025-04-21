@@ -7,11 +7,11 @@
   padding: vars.$spacing-lg;
   background-color: vars.$primary-orange;
 
-  &.todo {
+  &.Todo {
     background-color: vars.$info;
   }
 
-  &.done {
+  &.Done {
     background-color: vars.$success;
   }
 
