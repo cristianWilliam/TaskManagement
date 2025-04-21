@@ -1,7 +1,16 @@
 @use 'vars' as vars;
 
 :host {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: vars.$spacing-lg;
+  display: block;
+
+  mat-divider {
+    margin-top: vars.$spacing-lg;
+    margin-bottom: vars.$spacing-lg;
+  }
+
+  .task-manager-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: vars.$spacing-lg;
+  }
 }

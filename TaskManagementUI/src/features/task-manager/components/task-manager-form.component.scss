@@ -1,0 +1,36 @@
+@use 'vars' as vars;
+@use '@angular/material' as mat;
+
+:host {
+  display: block;
+
+  form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: vars.$spacing-md;
+
+    button {
+      transform: translateY(-10px);
+
+      // Disabled State
+      &[disabled] {
+        background-color: vars.$neutral-600;
+        color: white;
+      }
+    }
+
+    mat-error {
+      color: vars.$neutral-100;
+    }
+
+    mat-progress-spinner {
+      transform: translateY(-10px);
+    }
+  }
+
+  // Spinner
+  @include mat.progress-spinner-overrides((
+    active-indicator-color: orange,
+  ));
+}

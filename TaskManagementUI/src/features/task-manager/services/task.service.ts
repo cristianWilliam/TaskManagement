@@ -1,6 +1,7 @@
 import { Injectable, signal } from "@angular/core";
 import { Card } from "../models/card.model";
 import { CardStatus } from "../models/card-status";
+import { delay, of, tap } from "rxjs";
 
 @Injectable({
   providedIn: 'root',
@@ -108,4 +109,22 @@ export class TaskService {
   public updateTaskStatus(cardId: string, newStatus: CardStatus) {
     this.tasks.update((tasks) => tasks.map((task) => task.cardId === cardId ? { ...task, status: newStatus } : task));
   }
+
+  addTodoCard(cardDescription: string, cardResponsible: string) {
+    const card: Card = {
+      cardId: (new Date()).getTime().toString(),
+      description: cardDescription,
+      responsible: cardResponsible,
+      creationDateUtc: new Date(),
+      status: 'InProgress',
+    };
+
+    return of(card).pipe(
+      delay(3000),
+      tap(() => {
+        this.tasks.update((tasks) => [card, ...tasks]);
+      })
+    )
+  }
+
 }

@@ -1,22 +1,34 @@
-import { Component } from "@angular/core";
-import { FormsModule } from "@angular/forms";
+import { Component, input, output } from "@angular/core";
+import { MatCardModule } from "@angular/material/card";
+import { FormsModule, NgForm } from "@angular/forms";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from "@angular/material/button";
-import { MatIconModule } from "@angular/material/icon";
+import { CardForm } from "../models/card-form";
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 
 @Component({
   selector: 'app-task-manager-form',
   templateUrl: './task-manager-form.component.html',
   styleUrls: ['./task-manager-form.component.scss'],
   imports: [
+    MatCardModule,
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatIconModule,
+    MatProgressSpinnerModule,
   ],
 })
 export class TaskManagerFormComponent {
+  isLoading = input<boolean>(false);
+  onAddCard = output<CardForm>();
 
+  protected fireAddCard(form: NgForm) {
+    if (form.invalid) return;
+    this.onAddCard.emit(form.value as CardForm);
+
+    form.resetForm();
+  }
 }

@@ -1,3 +1,25 @@
-<form>
+<h3> Add Todo Card </h3>
 
+<form #todoForm="ngForm" (ngSubmit)="fireAddCard(todoForm)">
+  <mat-form-field appearance="fill">
+    <mat-label>Task Description</mat-label>
+    <input matInput ngModel name="taskDescription" required/>
+    <mat-error>Task Description is required</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Task Responsible</mat-label>
+    <input matInput ngModel name="taskResponsible" required/>
+    <mat-error>Task Responsible is required</mat-error>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="todoForm.invalid">
+    Add Task
+  </button>
+
+  @if(isLoading()){
+    <mat-progress-spinner mode="indeterminate" diameter="20"/>
+  }
 </form>
+
+

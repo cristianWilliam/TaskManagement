@@ -1,5 +1,11 @@
-<ng-container cdkDropListGroup>
+<app-task-manager-form (onAddCard)="addCard($event)" [isLoading]="isLoading()" />
+
+<mat-divider />
+
+<h4> Once the task is Done, can't be undone! </h4>
+
+<div class="task-manager-container" cdkDropListGroup>
   <app-task-manager-column columnType="Todo" columnTitle="To-Do" [columnData]="todoTasks()"/>
   <app-task-manager-column columnType="InProgress" columnTitle="In Progress" [columnData]="inProgressTasks()"/>
   <app-task-manager-column columnType="Done" columnTitle="Done" [columnData]="doneTasks()"/>
-</ng-container>
+</div>
