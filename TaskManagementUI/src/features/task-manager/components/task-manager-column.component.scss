@@ -1,0 +1,12 @@
+@use 'vars' as vars;
+
+:host {
+  display: block;
+
+  .column {
+    margin-top: vars.$spacing-lg;
+    display: flex;
+    flex-direction: column;
+    gap: vars.$spacing-sm;
+  }
+}

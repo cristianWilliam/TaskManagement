@@ -1,0 +1,24 @@
+@use 'vars' as vars;
+
+:host {
+  display: flex;
+  align-items: center;
+  height: vars.$dimension-md;
+  padding: vars.$spacing-lg;
+  background-color: vars.$primary-orange;
+
+  &.todo {
+    background-color: vars.$info;
+  }
+
+  &.done {
+    background-color: vars.$success;
+  }
+
+  h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: vars.$text-light;
+  }
+}

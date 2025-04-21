@@ -1,0 +1,168 @@
+// Color Palette - Black & Orange Theme
+
+// Primary Colors
+$primary-black: var(--primary-black, #121212);
+$primary-orange: var(--primary-orange, #FF6B00);
+
+// Secondary Colors
+$secondary-black: var(--secondary-black, #1E1E1E);
+$secondary-orange: var(--secondary-orange, #FF8C00);
+
+// Neutral Colors
+$neutral-100: var(--neutral-100, #FFFFFF);
+$neutral-200: var(--neutral-200, #F5F5F5);
+$neutral-300: var(--neutral-300, #E0E0E0);
+$neutral-400: var(--neutral-400, #BDBDBD);
+$neutral-500: var(--neutral-500, #9E9E9E);
+$neutral-600: var(--neutral-600, #757575);
+$neutral-700: var(--neutral-700, #616161);
+$neutral-800: var(--neutral-800, #424242);
+$neutral-900: var(--neutral-900, #212121);
+
+// Status Colors
+$success: var(--success, #4CAF50);
+$warning: var(--warning, #FFC107);
+$error: var(--error, #F44336);
+$info: var(--info, #2196F3);
+
+// Border Colors
+$border-light: var(--border-light, #E0E0E0);
+$border-dark: var(--border-dark, #757575);
+
+// Background Colors
+$background-light: var(--background-light, #FFFFFF);
+$background-dark: var(--background-dark, #121212);
+$background-medium: var(--background-medium, #2A2A2A);
+
+// Text Colors
+$text-primary: var(--text-primary, #212121);
+$text-secondary: var(--text-secondary, #757575);
+$text-light: var(--text-light, #FFFFFF);
+$text-dark: var(--text-dark, #121212);
+
+// Shadow Colors
+$shadow-color: var(--shadow-color, rgba(0, 0, 0, 0.1));
+$shadow-color-dark: var(--shadow-color-dark, rgba(0, 0, 0, 0.2));
+
+// Hover States
+$hover-primary: var(--hover-primary, #E55E00);
+$hover-secondary: var(--hover-secondary, #E57D00);
+
+// Disabled States
+$disabled-bg: var(--disabled-bg, #F5F5F5);
+$disabled-text: var(--disabled-text, #BDBDBD);
+
+// Spacing
+$spacing-xs: var(--spacing-xs, 0.25rem);
+$spacing-sm: var(--spacing-sm, 0.5rem);
+$spacing-md: var(--spacing-md, 1rem);
+$spacing-lg: var(--spacing-lg, 1.5rem);
+$spacing-xl: var(--spacing-xl, 2rem);
+$spacing-xxl: var(--spacing-xxl, 3rem);
+
+// Border Radius
+$border-radius-sm: var(--border-radius-sm, 0.25rem);
+$border-radius-md: var(--border-radius-md, 0.5rem);
+$border-radius-lg: var(--border-radius-lg, 1rem);
+$border-radius-xl: var(--border-radius-xl, 1.5rem);
+
+// Font Sizes
+$font-size-xs: var(--font-size-xs, 0.75rem);
+$font-size-sm: var(--font-size-sm, 0.875rem);
+$font-size-md: var(--font-size-md, 1rem);
+$font-size-lg: var(--font-size-lg, 1.25rem);
+$font-size-xl: var(--font-size-xl, 1.5rem);
+$font-size-xxl: var(--font-size-xxl, 2rem);
+
+// Dimensions
+$dimension-xs: var(--dimension-xs, 0.5rem);
+$dimension-sm: var(--dimension-sm, 1rem);
+$dimension-md: var(--dimension-md, 1.5rem);
+$dimension-lg: var(--dimension-lg, 2rem);
+$dimension-xl: var(--dimension-xl, 3rem);
+$dimension-xxl: var(--dimension-xxl, 4rem);
+
+// Export variables to CSS
+:root {
+  // Primary Colors
+  --primary-black: #121212;
+  --primary-orange: #FF6B00;
+
+  // Secondary Colors
+  --secondary-black: #1E1E1E;
+  --secondary-orange: #FF8C00;
+
+  // Neutral Colors
+  --neutral-100: #FFFFFF;
+  --neutral-200: #F5F5F5;
+  --neutral-300: #E0E0E0;
+  --neutral-400: #BDBDBD;
+  --neutral-500: #9E9E9E;
+  --neutral-600: #757575;
+  --neutral-700: #616161;
+  --neutral-800: #424242;
+  --neutral-900: #212121;
+
+  // Status Colors
+  --success: #4CAF50;
+  --warning: #FFC107;
+  --error: #F44336;
+  --info: #2196F3;
+
+  // Border Colors
+  --border-light: #E0E0E0;
+  --border-dark: #757575;
+
+  // Background Colors
+  --background-light: #FFFFFF;
+  --background-dark: #121212;
+  --background-medium: #2A2A2A;
+
+  // Text Colors
+  --text-primary: #212121;
+  --text-secondary: #757575;
+  --text-light: #FFFFFF;
+  --text-dark: #121212;
+
+  // Shadow Colors
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --shadow-color-dark: rgba(0, 0, 0, 0.2);
+
+  // Hover States
+  --hover-primary: #E55E00;
+  --hover-secondary: #E57D00;
+
+  // Disabled States
+  --disabled-bg: #F5F5F5;
+  --disabled-text: #BDBDBD;
+
+  // Spacing
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-xxl: 3rem;
+
+  // Border Radius
+  --border-radius-sm: 0.25rem;
+  --border-radius-md: 0.5rem;
+  --border-radius-lg: 1rem;
+  --border-radius-xl: 1.5rem;
+
+  // Font Sizes
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-xxl: 2rem;
+
+  // Dimensions
+  --dimension-xs: 0.5rem;
+  --dimension-sm: 1rem;
+  --dimension-md: 1.5rem;
+  --dimension-lg: 2rem;
+  --dimension-xl: 3rem;
+  --dimension-xxl: 4rem;
+}

@@ -1,0 +1,8 @@
+@use 'vars' as vars;
+
+:host {
+  display: block;
+  height: 100vh;
+  padding: vars.$spacing-lg;
+  background-color: vars.$background-medium;
+}

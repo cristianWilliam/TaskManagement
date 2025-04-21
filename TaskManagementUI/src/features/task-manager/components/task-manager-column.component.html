@@ -1,0 +1,9 @@
+<app-task-manager-header [columnType]="columnType()">
+  {{ columnTitle() }}
+</app-task-manager-header>
+
+<div class="column">
+  @for (card of columnData(); track card.cardId) {
+    <app-task-manager-card [card]="card" />
+  }
+</div>

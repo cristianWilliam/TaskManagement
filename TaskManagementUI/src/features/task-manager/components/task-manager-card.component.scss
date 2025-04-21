@@ -1,0 +1,18 @@
+@use '@angular/material' as mat;
+@use 'vars' as vars;
+
+:host {
+  @include mat.card-overrides((
+    subtitle-text-color: vars.$text-secondary,
+    outlined-container-color: vars.$neutral-100,
+    outlined-container-elevation: 0,
+    outlined-container-shape: 0,
+  ));
+
+  .mat-mdc-card {
+    .mat-mdc-card-title {
+      color: vars.$text-primary;
+      font-size: vars.$font-size-lg;
+    }
+  }
+}

@@ -1,0 +1,5 @@
+@if (todoTasks().length > 0) {
+  <app-task-manager-column columnType="todo" columnTitle="To-Do" [columnData]="todoTasks()"/>
+  <app-task-manager-column columnType="in-progress" columnTitle="In Progress" [columnData]="inProgressTasks()"/>
+  <app-task-manager-column columnType="done" columnTitle="Done" [columnData]="doneTasks()"/>
+}
