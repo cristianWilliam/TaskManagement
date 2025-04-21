@@ -1,36 +1,89 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { TaskManagerColumnComponent } from './components/task-manager-column.component';
-import { TaskService } from './services/task.service';
+import { CardsStore } from './services/cards.store.service';
 import { CdkDropListGroup } from '@angular/cdk/drag-drop';
 import { TaskManagerFormComponent } from './components/task-manager-form.component';
 import { MatDividerModule } from '@angular/material/divider';
+import { catchError, finalize, of, take, throwError } from 'rxjs';
+import { CardHttpService } from './services/http/card.http.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { CardForm } from './models/card-form';
-import { finalize, take } from 'rxjs';
 
 @Component({
   selector: 'app-task-manager-page',
-  imports: [TaskManagerColumnComponent, CdkDropListGroup, TaskManagerFormComponent, MatDividerModule],
+  imports: [
+    TaskManagerColumnComponent,
+    CdkDropListGroup,
+    TaskManagerFormComponent,
+    MatDividerModule,
+  ],
   templateUrl: './task-manager.page.component.html',
   styleUrls: ['./task-manager.page.component.scss'],
 })
-export class TaskManagerPageComponent {
-  private taskService = inject(TaskService);
-  private tasks = this.taskService.getTasks();
+export class TaskManagerPageComponent implements OnInit {
+  // Dependencies
+  private cardsStore = inject(CardsStore);
+  private cardHttpService = inject(CardHttpService);
+  private snackBar = inject(MatSnackBar);
 
-  protected todoTasks = computed(() => this.tasks().filter((task) => task.status === 'Todo'));
-  protected inProgressTasks = computed(() => this.tasks().filter((task) => task.status === 'InProgress'));
-  protected doneTasks = computed(() => this.tasks().filter((task) => task.status === 'Done'));
+  // Internal Members
+  private tasks = this.cardsStore.getTasks();
+
+  protected todoTasks = computed(() =>
+    this.tasks().filter((task) => task.status === 'Todo')
+  );
+  protected inProgressTasks = computed(() =>
+    this.tasks().filter((task) => task.status === 'InProgress')
+  );
+  protected doneTasks = computed(() =>
+    this.tasks().filter((task) => task.status === 'Done')
+  );
 
   protected isLoading = signal(false);
 
-  protected addCard(card: CardForm){
-    this.isLoading.set(true);
-    this.taskService.addTodoCard(card.taskDescription, card.taskResponsible)
+  // Hooks
+  ngOnInit(): void {
+    this.getAllCardsApi();
+  }
+
+  // Helper Methods
+  private getAllCardsApi() {
+    this.cardHttpService
+      .getAllCards()
       .pipe(
         take(1),
+        catchError((error) => {
+          this.showError('Failed to Get Cards');
+
+          return of([]);
+        })
+      )
+      .subscribe((cards) => {
+        this.cardsStore.initializeTasks(cards);
+      });
+  }
+
+  protected addCard(card: CardForm) {
+    this.isLoading.set(true);
+    this.cardHttpService
+      .addTodoCard(card.taskDescription, card.taskResponsible)
+      .pipe(
+        take(1),
+        catchError((err) => {
+          this.showError('Failed to add Card');
+          return throwError(() => err);
+        }),
         finalize(() => this.isLoading.set(false))
       )
-      .subscribe();
+      .subscribe((newCard) => {
+        this.cardsStore.addCard(newCard);
+      });
+  }
+
+  private showError(errorMessage: string) {
+    this.snackBar.open(errorMessage, 'Close', {
+      horizontalPosition: 'end',
+      verticalPosition: 'bottom',
+    });
   }
 }
-

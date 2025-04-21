@@ -25,7 +25,7 @@ public sealed class CardDescription
     {
         public Validator()
         {
-            this.RuleFor(x => x.Value)
+            RuleFor(x => x.Value)
                 .NotEmpty()
                 .MaximumLength(250);
         }

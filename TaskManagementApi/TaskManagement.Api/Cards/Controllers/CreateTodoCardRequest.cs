@@ -4,9 +4,9 @@ namespace TaskManagement.Api.Cards.Controllers;
 
 public record CreateTodoCardRequest(string Description, string Responsible);
 
-public class AddTodoCardRequestValidator : AbstractValidator<CreateTodoCardRequest>
+public class CreateTodoCardRequestValidator : AbstractValidator<CreateTodoCardRequest>
 {
-    public AddTodoCardRequestValidator()
+    public CreateTodoCardRequestValidator()
     {
         RuleFor(x => x.Description)
             .NotEmpty()
