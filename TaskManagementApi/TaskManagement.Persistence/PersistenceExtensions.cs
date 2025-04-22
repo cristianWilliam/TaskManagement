@@ -7,8 +7,7 @@ namespace TaskManagement.Persistence;
 
 public static class PersistenceExtensions
 {
-    public static void AddPersistenceLayer(this IServiceCollection services,
-        IConfiguration configuration)
+    public static void AddPersistenceLayer(this IServiceCollection services, IConfiguration configuration)
     {
         // Add Interceptors to DI
         services.AddScoped<PublishDomainInterceptor>();

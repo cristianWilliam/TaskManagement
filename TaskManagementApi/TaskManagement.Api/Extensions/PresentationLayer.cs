@@ -1,8 +1,10 @@
 ﻿using System.Reflection;
 using System.Text.Json.Serialization;
 using FluentValidation;
+using Microsoft.EntityFrameworkCore;
 using TaskManagement.Api.Cards.Hubs;
 using TaskManagement.Application.Cards.Notifications;
+using TaskManagement.Persistence;
 
 namespace TaskManagement.Api.Extensions;
 
@@ -30,5 +32,12 @@ public static class PresentationLayer
     public static void MapWebSocketEndpoint(this WebApplication app)
     {
         app.MapHub<CardsHub>("/api/cards-hub");
+    }
+
+    public static void InitializeDbSchema(this WebApplication app)
+    {
+        var scope = app.Services.CreateScope();
+        var appDbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+        appDbContext.Database.Migrate();
     }
 }

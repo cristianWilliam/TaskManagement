@@ -43,6 +43,8 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+app.InitializeDbSchema();
+
 app.Run();
 
 public partial class ApiProgram
