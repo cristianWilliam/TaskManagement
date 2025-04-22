@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# 
+#
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Api", "TaskManagement.Api\TaskManagement.Api.csproj", "{38D9B39A-8812-4BF0-8C19-91819D13EAF9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Application", "TaskManagement.Application\TaskManagement.Application.csproj", "{259A6B37-DA67-4181-B9AE-5075256BD49B}"
@@ -18,6 +18,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Domain.Tests", "TaskManagement.Domain.Tests\TaskManagement.Domain.Tests.csproj", "{F1AA644F-6B07-40A0-8056-CBD87A98DEEE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Application.Tests", "TaskManagement.Application.Tests\TaskManagement.Application.Tests.csproj", "{F6BB71E1-8B67-4F59-A1B8-AD80459A3962}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagementApi.Tests.Integration", "TaskManagementApi.Tests.Integration\TaskManagementApi.Tests.Integration.csproj", "{13F6661B-29FF-4900-98D2-59EC1AA04990}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,10 +59,15 @@ Global
 		{F6BB71E1-8B67-4F59-A1B8-AD80459A3962}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6BB71E1-8B67-4F59-A1B8-AD80459A3962}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6BB71E1-8B67-4F59-A1B8-AD80459A3962}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13F6661B-29FF-4900-98D2-59EC1AA04990}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13F6661B-29FF-4900-98D2-59EC1AA04990}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13F6661B-29FF-4900-98D2-59EC1AA04990}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13F6661B-29FF-4900-98D2-59EC1AA04990}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{F5FEF47C-5428-473F-9806-363DCD1964AD} = {1D4D7E93-8EE7-412B-AB93-6843C8FD420B}
 		{F1AA644F-6B07-40A0-8056-CBD87A98DEEE} = {1D4D7E93-8EE7-412B-AB93-6843C8FD420B}
 		{F6BB71E1-8B67-4F59-A1B8-AD80459A3962} = {1D4D7E93-8EE7-412B-AB93-6843C8FD420B}
+		{13F6661B-29FF-4900-98D2-59EC1AA04990} = {1D4D7E93-8EE7-412B-AB93-6843C8FD420B}
 	EndGlobalSection
 EndGlobal

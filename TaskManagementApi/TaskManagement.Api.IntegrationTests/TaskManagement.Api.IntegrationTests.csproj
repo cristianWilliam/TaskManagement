@@ -1,0 +1,65 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+
+        <IsPackable>false</IsPackable>
+        <IsTestProject>true</IsTestProject>
+        <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+        <ShadowCopyAssets>false</ShadowCopyAssets>
+        <UseVSTestingPlatform>true</UseVSTestingPlatform>
+        <VSTestHostingProcessExitTimeout>0</VSTestHostingProcessExitTimeout>
+        <VSTestNoParallelization>true</VSTestNoParallelization>
+        <VSTestTestAdapterPath>.</VSTestTestAdapterPath>
+        <RunSettingsFilePath>$(MSBuildProjectDirectory)\rider.runsettings</RunSettingsFilePath>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Bogus" Version="35.6.3" />
+        <PackageReference Include="coverlet.collector" Version="6.0.0"/>
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="7.0.20" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0"/>
+        <PackageReference Include="Testcontainers.MsSql" Version="4.0.0" />
+        <PackageReference Include="xunit" Version="2.5.3"/>
+        <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Using Include="Xunit"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\TaskManagement.Api\TaskManagement.Api.csproj" />
+      <ProjectReference Include="..\TaskManagement.Persistence\TaskManagement.Persistence.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="xunit.runner.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Include="rider.runsettings">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
+    <Target Name="CopyDepsFiles" AfterTargets="Build" Condition="'$(TargetFramework)'!=''">
+        <ItemGroup>
+            <DepsFilePaths Include="$(OutputPath)\$(AssemblyName).deps.json" />
+            <DepsFilePaths Include="$(OutputPath)\testhost.deps.json" />
+        </ItemGroup>
+        <Copy SourceFiles="@(DepsFilePaths)" DestinationFolder="$(OutputPath)" Condition="Exists('%(FullPath)')" />
+    </Target>
+
+    <Target Name="CopyApiDepsJson" AfterTargets="Build">
+        <PropertyGroup>
+            <ApiProjectOutputPath>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)\..\TaskManagement.Api\bin\$(Configuration)\$(TargetFramework)'))</ApiProjectOutputPath>
+        </PropertyGroup>
+        <Copy SourceFiles="$(ApiProjectOutputPath)\TaskManagement.Api.deps.json" 
+              DestinationFiles="$(OutputPath)\testhost.deps.json" 
+              SkipUnchangedFiles="false" />
+        <Message Text="Copied deps.json from $(ApiProjectOutputPath) to $(OutputPath)" Importance="high" />
+    </Target>
+
+</Project>

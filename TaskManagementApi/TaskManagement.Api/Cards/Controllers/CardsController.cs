@@ -70,7 +70,7 @@ public class CardsController : BaseController
     /// <param name="cancellationToken">Token for cancellation</param>
     /// <returns>The updated card in case of success</returns>
     [HttpPatch("{cardId:guid}")]
-    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(CardDto))]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(MoveCardDto))]
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(CommonErrorResponse[]))]
     [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(CommonErrorResponse[]))]
     public async Task<IActionResult> MoveCardAsync(Guid cardId, [FromBody] MoveCardRequest req,
