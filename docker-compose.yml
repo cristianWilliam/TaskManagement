@@ -1,0 +1,44 @@
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=P@ssw0rd@SqlServer
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+    networks:
+      - taskmanagement_network
+
+  backend:
+    build:
+      context: ./TaskManagementApi
+      dockerfile: Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
+    ports:
+      - "5031:80"
+    depends_on:
+      - sqlserver
+    restart: on-failure
+    networks:
+      - taskmanagement_network
+
+  frontend:
+    build:
+      context: ./TaskManagementUi
+      dockerfile: Dockerfile
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
+    networks:
+      - taskmanagement_network
+
+networks:
+  taskmanagement_network:
+    driver: bridge
+
+volumes:
+  sqlserver_data:

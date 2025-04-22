@@ -36,8 +36,30 @@ public static class PresentationLayer
 
     public static void InitializeDbSchema(this WebApplication app)
     {
-        var scope = app.Services.CreateScope();
-        var appDbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-        appDbContext.Database.Migrate();
+        try
+        {
+            var scope = app.Services.CreateScope();
+            var appDbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+            
+            // Check if database exists and create/migrate only if needed
+            if (!appDbContext.Database.CanConnect())
+            {
+                // Database doesn't exist or can't connect, create it
+                appDbContext.Database.Migrate();
+            }
+            else
+            {
+                // Database exists, check if migrations are pending
+                if (appDbContext.Database.GetPendingMigrations().Any())
+                {
+                    appDbContext.Database.Migrate();
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            // Log the exception but don't crash the application
+            Console.WriteLine($"Error initializing database: {ex.Message}");
+        }
     }
 }

@@ -65,6 +65,16 @@
                   "with": "src/environments/environment.development.ts"
                 }
               ]
+            },
+            "docker": {
+              "optimization": true,
+              "outputHashing": "all",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.docker.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -77,6 +87,9 @@
             },
             "development": {
               "buildTarget": "TaskManagementUI:build:development"
+            },
+            "docker": {
+              "buildTarget": "TaskManagementUI:build:docker"
             }
           },
           "defaultConfiguration": "development"
