@@ -21,13 +21,13 @@ internal sealed class PublishDomainInterceptor : SaveChangesInterceptor
 
         if (cardsEntry is null || !cardsEntry.Any() || domainEvents is null || !domainEvents.Any())
             return await base.SavedChangesAsync(eventData, result, cancellationToken);
-        
+
         foreach (var entityEntry in cardsEntry)
             entityEntry.Entity.ClearEvents();
-        
+
         foreach (var domainEvent in domainEvents)
             await _mediator.Publish(domainEvent, cancellationToken);
-        
+
         return await base.SavedChangesAsync(eventData, result, cancellationToken);
     }
 }

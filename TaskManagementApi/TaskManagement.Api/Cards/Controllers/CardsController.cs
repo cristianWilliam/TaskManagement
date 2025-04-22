@@ -23,23 +23,26 @@ public class CardsController : BaseController
     }
 
     /// <summary>
-    /// List all cards.
+    ///     List all cards.
     /// </summary>
     /// <param name="cancellationToken">Token for cancel action</param>
     /// <returns>List of cards</returns>
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(CardDto[]))]
     public async Task<IActionResult> GetCards(CancellationToken cancellationToken = default)
-        => this.Ok(await _sender.Send(new GetAllCardsQuery(), cancellationToken));
+    {
+        return Ok(await _sender.Send(new GetAllCardsQuery(), cancellationToken));
+    }
 
     /// <summary>
-    /// Creates a new Card
+    ///     Creates a new Card
     /// </summary>
     /// <returns> The created Card </returns>
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(CardDto))]
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(CommonErrorResponse[]))]
-    public async Task<IActionResult> CreateTodoCardAsync(CreateTodoCardRequest req, IValidator<CreateTodoCardRequest> validators, CancellationToken cancellationToken = default)
+    public async Task<IActionResult> CreateTodoCardAsync(CreateTodoCardRequest req,
+        IValidator<CreateTodoCardRequest> validators, CancellationToken cancellationToken = default)
     {
         // Check params from request.
         var requestValidationResult = await validators.ValidateAsync(req, cancellationToken);
@@ -59,7 +62,7 @@ public class CardsController : BaseController
     }
 
     /// <summary>
-    /// Move the card using Status
+    ///     Move the card using Status
     /// </summary>
     /// <param name="cardId"></param>
     /// <param name="req">The request</param>
@@ -70,9 +73,10 @@ public class CardsController : BaseController
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(CardDto))]
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(CommonErrorResponse[]))]
     [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(CommonErrorResponse[]))]
-    public async Task<IActionResult> MoveCardAsync(Guid cardId, [FromBody] MoveCardRequest req, IValidator<MoveCardRequest> validator, CancellationToken cancellationToken = default)
+    public async Task<IActionResult> MoveCardAsync(Guid cardId, [FromBody] MoveCardRequest req,
+        IValidator<MoveCardRequest> validator, CancellationToken cancellationToken = default)
     {
-        req = req with { CardId = cardId };
+        req = req with {CardId = cardId};
 
         var requestValidationResult = await validator.ValidateAsync(req, cancellationToken);
         if (!requestValidationResult.IsValid)

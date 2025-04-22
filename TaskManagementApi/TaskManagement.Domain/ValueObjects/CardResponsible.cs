@@ -14,7 +14,7 @@ public sealed class CardResponsible
 
     public static Result<CardResponsible> Create(string value)
     {
-        var instance = new CardResponsible { Value = value };
+        var instance = new CardResponsible {Value = value};
 
         var validationResult = new Validator().Validate(instance);
         return validationResult.IsValid
@@ -22,17 +22,24 @@ public sealed class CardResponsible
             : validationResult.ToValidationErrorsResult<CardResponsible>();
     }
 
+    // Castings
+    public override string ToString()
+    {
+        return Value ?? string.Empty;
+    }
+
+    public static implicit operator string(CardResponsible value)
+    {
+        return value.ToString();
+    }
+
     // Validator Class
     private class Validator : AbstractValidator<CardResponsible>
     {
         public Validator()
         {
-            this.RuleFor(x => x.Value)
+            RuleFor(x => x.Value)
                 .NotEmpty();
         }
     }
-
-    // Castings
-    public override string ToString() => Value ?? string.Empty;
-    public static implicit operator string(CardResponsible value) => value.ToString();
 }

@@ -17,4 +17,4 @@ public record CreateTodoCardCommand(
             () => new CreateTodoCardCommand(descriptionResult.Value!, responsibleResult.Value!),
             descriptionResult, responsibleResult);
     }
-};
+}

@@ -12,7 +12,7 @@ public static class PersistenceExtensions
     {
         // Add Interceptors to DI
         services.AddScoped<PublishDomainInterceptor>();
-        
+
         // Add Db;
         services.AddDbContext<AppDbContext>((sp, config) =>
         {
@@ -20,9 +20,9 @@ public static class PersistenceExtensions
                 configuration.GetConnectionString("DefaultConnection");
 
             config.UseSqlServer(connectionString);
-            
+
             var domainInterceptor = sp.GetRequiredService<PublishDomainInterceptor>();
             config.AddInterceptors(domainInterceptor);
         });
     }
-} 
+}

@@ -22,7 +22,8 @@ internal sealed class MoveCardCommandHandler : IRequestHandler<MoveCardCommand, 
     public async Task<Result<MoveCardDto>> Handle(MoveCardCommand request,
         CancellationToken cancellationToken)
     {
-        var card = await _dbContext.TaskCards.SingleOrDefaultAsync(card => card.Id == request.CardId, cancellationToken);
+        var card = await _dbContext.TaskCards.SingleOrDefaultAsync(card => card.Id == request.CardId,
+            cancellationToken);
         if (card is null) return Result<MoveCardDto>.Failure(new CardNotFoundError(request.CardId));
 
         if (request.NextStatus == card.Status)

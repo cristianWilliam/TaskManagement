@@ -4,5 +4,5 @@ public enum CardStatus
 {
     Todo,
     InProgress,
-    Done,
+    Done
 }

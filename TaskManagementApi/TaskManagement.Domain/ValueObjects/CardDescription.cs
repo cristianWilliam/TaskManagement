@@ -14,10 +14,21 @@ public sealed class CardDescription
 
     public static Result<CardDescription> Create(string value)
     {
-        var instance = new CardDescription { Value = value };
+        var instance = new CardDescription {Value = value};
 
         var validationResult = new Validator().Validate(instance);
         return validationResult.IsValid ? instance : validationResult.ToValidationErrorsResult<CardDescription>();
+    }
+
+    // Castings
+    public override string ToString()
+    {
+        return Value ?? string.Empty;
+    }
+
+    public static implicit operator string(CardDescription value)
+    {
+        return value.ToString();
     }
 
     // Validator Class
@@ -30,8 +41,4 @@ public sealed class CardDescription
                 .MaximumLength(250);
         }
     }
-
-    // Castings
-    public override string ToString() => Value ?? string.Empty;
-    public static implicit operator string(CardDescription value) => value.ToString();
 }

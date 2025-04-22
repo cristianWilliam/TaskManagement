@@ -14,8 +14,10 @@ internal class GetAllCardsQueryHandler : IRequestHandler<GetAllCardsQuery, CardD
     }
 
     public Task<CardDto[]> Handle(GetAllCardsQuery request, CancellationToken cancellationToken)
-            => _appDb.TaskCards
-                .OrderByDescending(x => x.UpdatedOnUtc ?? x.CreatedOnUtc)
-                .Select(card => new CardDto(card.Id, card.Description, card.Responsible, card.CreatedOnUtc, card.Status))
-                .ToArrayAsync(cancellationToken);
+    {
+        return _appDb.TaskCards
+            .OrderByDescending(x => x.UpdatedOnUtc ?? x.CreatedOnUtc)
+            .Select(card => new CardDto(card.Id, card.Description, card.Responsible, card.CreatedOnUtc, card.Status))
+            .ToArrayAsync(cancellationToken);
+    }
 }

@@ -18,17 +18,29 @@ public sealed class Result<TResult> : IResult
     }
 
     public TResult? Value { get; }
-    public List<IError> Errors { get; } = new List<IError>();
+
+    public bool IsFailure => !IsSuccess;
+    public List<IError> Errors { get; } = new();
 
     public bool IsSuccess => !Errors.Any();
 
-    public bool IsFailure => !IsSuccess;
+    private static Result<TResult> Success(TResult value)
+    {
+        return new Result<TResult>(value);
+    }
 
-    private static Result<TResult> Success(TResult value) => new Result<TResult>(value);
+    public static Result<TResult> Failure(IError error)
+    {
+        return new Result<TResult>(error);
+    }
 
-    public static Result<TResult> Failure(IError error) => new Result<TResult>(error);
+    public static Result<TResult> Failure(IEnumerable<IError> errors)
+    {
+        return new Result<TResult>(errors.ToArray());
+    }
 
-    public static Result<TResult> Failure(IEnumerable<IError> errors) => new Result<TResult>(errors.ToArray());
-
-    public static implicit operator Result<TResult>(TResult value) => Success(value);
+    public static implicit operator Result<TResult>(TResult value)
+    {
+        return Success(value);
+    }
 }

@@ -7,10 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers()
-    .AddJsonOptions(options =>
-    {
-        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
-    });
+    .AddJsonOptions(options => { options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()); });
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -19,7 +16,6 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddPersistenceLayer(builder.Configuration);
 builder.Services.AddApplication();
 builder.Services.AddPresentationLayer();
-builder.Services.AddSignalR();
 
 // Enable cors
 builder.Services.AddCors(policy =>
@@ -37,6 +33,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors();
+app.MapWebSocketEndpoint();
 
 // app.UseHttpsRedirection();
 app.UseAuthorization();

@@ -27,19 +27,18 @@ public class Card : BaseDomainEvents
         CardDescription description, CardResponsible responsible,
         IDateTimeProvider dateTimeProvider)
     {
-        
         var newCard = new Card
         {
             Id = id,
             Description = description,
             Responsible = responsible,
             CreatedOnUtc = dateTimeProvider.UtcNow,
-            Status = CardStatus.Todo,
+            Status = CardStatus.Todo
         };
 
         newCard.AddDomainEvent(
             new CardCreatedEvent(
-                newCard.Id, description.Value!, responsible.Value!, 
+                newCard.Id, description.Value!, responsible.Value!,
                 newCard.CreatedOnUtc, newCard.Status));
 
         return newCard;
@@ -53,7 +52,7 @@ public class Card : BaseDomainEvents
             return validationResult;
 
         AddDomainEvent(new CardStatusUpdatedEvent(Id, Status, newStatus));
-        
+
         Status = newStatus;
         UpdatedOnUtc = dateTimeProvider.UtcNow;
         return true;
