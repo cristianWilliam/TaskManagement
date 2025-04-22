@@ -1,4 +1,4 @@
-namespace TaskManagement.Core.ErrorManagement;
+namespace TaskManagement.Core.ErrorManagement.ResultPattern;
 
 public enum ErrorType
 {

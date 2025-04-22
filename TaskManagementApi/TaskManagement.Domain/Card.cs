@@ -1,4 +1,5 @@
 using TaskManagement.Core.ErrorManagement;
+using TaskManagement.Core.ErrorManagement.ResultPattern;
 using TaskManagement.Domain.Events;
 using TaskManagement.Domain.Validators;
 using TaskManagement.Domain.ValueObjects;

@@ -1,4 +1,6 @@
-﻿namespace TaskManagement.Core.ErrorManagement;
+﻿using TaskManagement.Core.ErrorManagement.ResultPattern;
+
+namespace TaskManagement.Core.ErrorManagement;
 
 public static class ResultHelpers
 {

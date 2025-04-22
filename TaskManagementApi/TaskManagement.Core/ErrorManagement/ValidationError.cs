@@ -1,3 +1,5 @@
+using TaskManagement.Core.ErrorManagement.ResultPattern;
+
 namespace TaskManagement.Core.ErrorManagement;
 
 public record ValidationError(string Error) : IError

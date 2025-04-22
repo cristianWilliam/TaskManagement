@@ -2,6 +2,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using TaskManagement.Application.Cards.Errors;
 using TaskManagement.Core.ErrorManagement;
+using TaskManagement.Core.ErrorManagement.ResultPattern;
 using TaskManagement.Domain;
 using TaskManagement.Persistence;
 

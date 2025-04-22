@@ -7,6 +7,12 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+            <_Parameter1>TaskManagement.Core.Tests</_Parameter1>
+        </AssemblyAttribute>
+    </ItemGroup>
+
+    <ItemGroup>
         <PackageReference Include="FluentValidation" Version="11.11.0"/>
         <PackageReference Include="MediatR" Version="12.5.0"/>
     </ItemGroup>
