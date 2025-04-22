@@ -1,0 +1,9 @@
+global using Xunit;
+global using TaskManagement.Core.ErrorManagement;
+global using TaskManagement.Core.ErrorManagement.ResultPattern;
+global using TaskManagement.Domain;
+global using TaskManagement.Domain.Events;
+global using TaskManagement.Domain.Validators;
+global using TaskManagement.Domain.ValueObjects;
+global using FluentValidation.Results;
+global using Bogus;
