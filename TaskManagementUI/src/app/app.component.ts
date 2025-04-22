@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TaskManagerPageComponent } from '../features/task-manager/task-manager.page.component';
+import { TaskManagerPageComponent } from './features/task-manager/task-manager.page.component';
 
 @Component({
   selector: 'app-root',

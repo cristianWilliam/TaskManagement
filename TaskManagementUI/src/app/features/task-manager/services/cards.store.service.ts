@@ -25,6 +25,12 @@ export class CardsStore {
   }
 
   public addCard(newCard: Card){
+    // Check if card already exists
+    const existingCard = this.tasks().find(card => card.cardId === newCard.cardId);
+    if (existingCard) {
+      return;
+    }
+
     this.tasks.update(cards => [newCard, ...cards]);
   }
 }

@@ -8,7 +8,9 @@ import { CardStatus } from '../models/card-status';
 import { CardsStore } from '../services/cards.store.service';
 import { CardHttpService } from '../services/http/card.http.service';
 import { catchError, take, throwError } from 'rxjs';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackbarService } from '../../snackbar/snackbar.service';
+
+
 @Component({
   selector: 'app-task-manager-column',
   imports: [
@@ -26,7 +28,7 @@ export class TaskManagerColumnComponent {
   // Dependencies
   private cardsStore = inject(CardsStore);
   private cardHttpService = inject(CardHttpService);
-  private matSnackbar = inject(MatSnackBar);
+  private snackBarService = inject(SnackbarService);
 
   // Inputs
   columnTitle = input.required<string>();
@@ -57,7 +59,7 @@ export class TaskManagerColumnComponent {
         .pipe(
           take(1),
           catchError((err) => {
-            this.showError('Error on Saving');
+            this.snackBarService.showError('Error on Saving');
 
             // Undo Move card
             transferArrayItem(
@@ -76,12 +78,5 @@ export class TaskManagerColumnComponent {
 
   protected noDonePredicate(item: CdkDrag<Card>) {
     return item.data.status !== 'Done';
-  }
-
-  private showError(errorMessage: string) {
-    this.matSnackbar.open(errorMessage, 'Close', {
-      horizontalPosition: 'end',
-      verticalPosition: 'bottom',
-    });
   }
 }

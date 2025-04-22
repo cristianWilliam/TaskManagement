@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System.Text.Json.Serialization;
 using FluentValidation;
 using TaskManagement.Api.Cards.Hubs;
 using TaskManagement.Application.Cards.Notifications;
@@ -20,7 +21,9 @@ public static class PresentationLayer
 
     private static void AddSignalRServices(this IServiceCollection services)
     {
-        services.AddSignalR();
+        services.AddSignalR().AddJsonProtocol(buider =>
+            buider.PayloadSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
+        
         services.AddSingleton<ICardsNotificationService, SignalRCardNotificationService>();
     }
 

@@ -6,8 +6,9 @@ import { TaskManagerFormComponent } from './components/task-manager-form.compone
 import { MatDividerModule } from '@angular/material/divider';
 import { catchError, finalize, of, take, throwError } from 'rxjs';
 import { CardHttpService } from './services/http/card.http.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { CardForm } from './models/card-form';
+import { CardHubService } from './services/hubs/card.hub.service';
+import { SnackbarService } from '../snackbar/snackbar.service';
 
 @Component({
   selector: 'app-task-manager-page',
@@ -19,12 +20,15 @@ import { CardForm } from './models/card-form';
   ],
   templateUrl: './task-manager.page.component.html',
   styleUrls: ['./task-manager.page.component.scss'],
+  providers: [CardHubService]
 })
 export class TaskManagerPageComponent implements OnInit {
+
   // Dependencies
   private cardsStore = inject(CardsStore);
   private cardHttpService = inject(CardHttpService);
-  private snackBar = inject(MatSnackBar);
+  private snackBar = inject(SnackbarService);
+  private cardHubService = inject(CardHubService);
 
   // Internal Members
   private tasks = this.cardsStore.getTasks();
@@ -44,6 +48,7 @@ export class TaskManagerPageComponent implements OnInit {
   // Hooks
   ngOnInit(): void {
     this.getAllCardsApi();
+    this.cardHubService.startConnection();
   }
 
   // Helper Methods
@@ -53,8 +58,7 @@ export class TaskManagerPageComponent implements OnInit {
       .pipe(
         take(1),
         catchError((error) => {
-          this.showError('Failed to Get Cards');
-
+          this.snackBar.showError('Failed to Get Cards');
           return of([]);
         })
       )
@@ -70,7 +74,7 @@ export class TaskManagerPageComponent implements OnInit {
       .pipe(
         take(1),
         catchError((err) => {
-          this.showError('Failed to add Card');
+          this.snackBar.showError('Failed to add Card');
           return throwError(() => err);
         }),
         finalize(() => this.isLoading.set(false))
@@ -78,12 +82,5 @@ export class TaskManagerPageComponent implements OnInit {
       .subscribe((newCard) => {
         this.cardsStore.addCard(newCard);
       });
-  }
-
-  private showError(errorMessage: string) {
-    this.snackBar.open(errorMessage, 'Close', {
-      horizontalPosition: 'end',
-      verticalPosition: 'bottom',
-    });
   }
 }

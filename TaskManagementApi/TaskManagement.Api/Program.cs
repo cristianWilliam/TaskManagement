@@ -20,7 +20,10 @@ builder.Services.AddPresentationLayer();
 // Enable cors
 builder.Services.AddCors(policy =>
 {
-    policy.AddDefaultPolicy(policyBuilder => { policyBuilder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin(); });
+    policy.AddDefaultPolicy(policyBuilder =>
+    {
+        policyBuilder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin().SetIsOriginAllowed(_ => true);
+    });
 });
 
 var app = builder.Build();

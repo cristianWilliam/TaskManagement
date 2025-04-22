@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { CardResponse } from "./card.response";
-import { environment } from "../../../../environments/environment";
+import { environment } from "../../../../../environments/environment";
 import { AddCardRequest } from "./add-card.request";
 import { CardStatus } from "../../models/card-status";
 import { MoveCardRequest } from "./move-card.request";
