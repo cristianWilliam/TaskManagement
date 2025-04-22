@@ -20,8 +20,4 @@
         <ProjectReference Include="..\TaskManagement.Application\TaskManagement.Application.csproj"/>
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Cards\" />
-    </ItemGroup>
-
 </Project>

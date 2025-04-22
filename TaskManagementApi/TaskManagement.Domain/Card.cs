@@ -1,10 +1,11 @@
 using TaskManagement.Core.ErrorManagement;
+using TaskManagement.Domain.Events;
 using TaskManagement.Domain.Validators;
 using TaskManagement.Domain.ValueObjects;
 
 namespace TaskManagement.Domain;
 
-public class Card
+public class Card : BaseDomainEvents
 {
     // EF Constructor
     protected Card()
@@ -24,8 +25,10 @@ public class Card
 
     public static Result<Card> CreateToDoCard(Guid id,
         CardDescription description, CardResponsible responsible,
-        IDateTimeProvider dateTimeProvider) =>
-        new Card
+        IDateTimeProvider dateTimeProvider)
+    {
+        
+        var newCard = new Card
         {
             Id = id,
             Description = description,
@@ -34,14 +37,24 @@ public class Card
             Status = CardStatus.Todo,
         };
 
-    public Result<bool> UpdateStatus(CardStatus status, IDateTimeProvider dateTimeProvider)
+        newCard.AddDomainEvent(
+            new CardCreatedEvent(
+                newCard.Id, description.Value!, responsible.Value!, 
+                newCard.CreatedOnUtc, newCard.Status));
+
+        return newCard;
+    }
+
+    public Result<bool> UpdateStatus(CardStatus newStatus, IDateTimeProvider dateTimeProvider)
     {
         var validationResult = new CanUpdateStatusSpecification().IsSatisfiedBy(this);
 
         if (validationResult.IsFailure)
             return validationResult;
 
-        Status = status;
+        AddDomainEvent(new CardStatusUpdatedEvent(Id, Status, newStatus));
+        
+        Status = newStatus;
         UpdatedOnUtc = dateTimeProvider.UtcNow;
         return true;
     }

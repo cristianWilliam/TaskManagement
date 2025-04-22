@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using TaskManagement.Infra.Interceptors;
 
 namespace TaskManagement.Infra;
 
@@ -9,12 +10,19 @@ public static class InfraExtensions
     public static void AddInfraLayer(this IServiceCollection services,
         IConfiguration configuration)
     {
-        services.AddDbContext<AppDbContext>(config =>
+        // Add Interceptors to DI
+        services.AddScoped<PublishDomainInterceptor>();
+        
+        // Add Db;
+        services.AddDbContext<AppDbContext>((sp, config) =>
         {
             var connectionString =
                 configuration.GetConnectionString("DefaultConnection");
 
             config.UseSqlServer(connectionString);
+            
+            var domainInterceptor = sp.GetRequiredService<PublishDomainInterceptor>();
+            config.AddInterceptors(domainInterceptor);
         });
     }
-}
+} 

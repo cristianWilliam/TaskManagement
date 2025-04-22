@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using TaskManagement.Api.Cards.Hubs;
 using TaskManagement.Api.Extensions;
 using TaskManagement.Application;
 using TaskManagement.Infra;
@@ -19,6 +20,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddInfraLayer(builder.Configuration);
 builder.Services.AddApplication();
 builder.Services.AddPresentationLayer();
+builder.Services.AddSignalR();
 
 // Enable cors
 builder.Services.AddCors(policy =>
@@ -35,6 +37,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.MapHub<CardsHub>("api/cards/hub");
 app.UseCors();
 
 // app.UseHttpsRedirection();
