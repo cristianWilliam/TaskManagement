@@ -2,7 +2,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using TaskManagement.Domain;
 
-namespace TaskManagement.Infra.Interceptors;
+namespace TaskManagement.Persistence.Interceptors;
 
 internal sealed class PublishDomainInterceptor : SaveChangesInterceptor
 {

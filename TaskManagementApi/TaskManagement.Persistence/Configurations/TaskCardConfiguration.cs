@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TaskManagement.Domain;
 using TaskManagement.Domain.ValueObjects;
 
-namespace TaskManagement.Infra.Configurations;
+namespace TaskManagement.Persistence.Configurations;
 
 internal sealed class TaskCardConfiguration : IEntityTypeConfiguration<Card>
 {

@@ -2,7 +2,7 @@ using MediatR;
 using TaskManagement.Application.Providers;
 using TaskManagement.Core.ErrorManagement;
 using TaskManagement.Domain;
-using TaskManagement.Infra;
+using TaskManagement.Persistence;
 
 namespace TaskManagement.Application.Cards.Create;
 

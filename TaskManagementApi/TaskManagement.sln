@@ -8,7 +8,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Core", "Task
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Domain", "TaskManagement.Domain\TaskManagement.Domain.csproj", "{453F8478-707E-4480-99A7-FB28C4164591}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Infra", "TaskManagement.Infra\TaskManagement.Infra.csproj", "{4E814661-C843-4856-B56D-C5E7377F6235}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Persistence", "TaskManagement.Persistence\TaskManagement.Persistence.csproj", "{4E814661-C843-4856-B56D-C5E7377F6235}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Infra", "TaskManagement.Infra\TaskManagement.Infra.csproj", "{A9CF21F1-F4C4-4699-A31C-63C100807A30}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,5 +38,9 @@ Global
 		{4E814661-C843-4856-B56D-C5E7377F6235}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E814661-C843-4856-B56D-C5E7377F6235}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E814661-C843-4856-B56D-C5E7377F6235}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9CF21F1-F4C4-4699-A31C-63C100807A30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9CF21F1-F4C4-4699-A31C-63C100807A30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9CF21F1-F4C4-4699-A31C-63C100807A30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9CF21F1-F4C4-4699-A31C-63C100807A30}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

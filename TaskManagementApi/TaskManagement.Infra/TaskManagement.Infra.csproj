@@ -6,20 +6,4 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
-    <ItemGroup>
-        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.20"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.20"/>
-        <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="7.0.0"/>
-    </ItemGroup>
-
-    <ItemGroup>
-        <ProjectReference Include="..\TaskManagement.Domain\TaskManagement.Domain.csproj"/>
-    </ItemGroup>
-
-    <ItemGroup>
-      <Reference Include="Microsoft.AspNetCore">
-        <HintPath>..\..\..\..\..\..\..\usr\local\share\dotnet\shared\Microsoft.AspNetCore.App\7.0.4\Microsoft.AspNetCore.dll</HintPath>
-      </Reference>
-    </ItemGroup>
-
 </Project>

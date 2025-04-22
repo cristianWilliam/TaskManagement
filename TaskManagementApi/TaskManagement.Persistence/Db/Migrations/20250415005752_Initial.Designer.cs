@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using TaskManagement.Infra;
+using TaskManagement.Persistence;
 
 #nullable disable
 
-namespace TaskManagement.Infra.Db.Migrations
+namespace TaskManagement.Persistence.Db.Migrations
 {
     [DbContext(typeof(AppDbContext))]
     [Migration("20250415005752_Initial")]

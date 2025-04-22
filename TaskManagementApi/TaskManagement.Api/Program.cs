@@ -1,8 +1,7 @@
 using System.Text.Json.Serialization;
-using TaskManagement.Api.Cards.Hubs;
 using TaskManagement.Api.Extensions;
 using TaskManagement.Application;
-using TaskManagement.Infra;
+using TaskManagement.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,7 +16,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Add Layers
-builder.Services.AddInfraLayer(builder.Configuration);
+builder.Services.AddPersistenceLayer(builder.Configuration);
 builder.Services.AddApplication();
 builder.Services.AddPresentationLayer();
 builder.Services.AddSignalR();
@@ -37,7 +36,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.MapHub<CardsHub>("api/cards/hub");
 app.UseCors();
 
 // app.UseHttpsRedirection();

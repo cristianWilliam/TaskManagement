@@ -1,13 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using TaskManagement.Infra.Interceptors;
+using TaskManagement.Persistence.Interceptors;
 
-namespace TaskManagement.Infra;
+namespace TaskManagement.Persistence;
 
-public static class InfraExtensions
+public static class PersistenceExtensions
 {
-    public static void AddInfraLayer(this IServiceCollection services,
+    public static void AddPersistenceLayer(this IServiceCollection services,
         IConfiguration configuration)
     {
         // Add Interceptors to DI

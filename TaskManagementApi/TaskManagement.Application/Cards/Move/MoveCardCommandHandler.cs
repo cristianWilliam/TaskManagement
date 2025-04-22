@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using TaskManagement.Application.Cards.Errors;
 using TaskManagement.Core.ErrorManagement;
 using TaskManagement.Domain;
-using TaskManagement.Infra;
+using TaskManagement.Persistence;
 
 namespace TaskManagement.Application.Cards.Move;
 

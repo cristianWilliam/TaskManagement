@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
-using TaskManagement.Infra;
+using TaskManagement.Persistence;
 
 namespace TaskManagement.Application.Cards.GetAll;
 

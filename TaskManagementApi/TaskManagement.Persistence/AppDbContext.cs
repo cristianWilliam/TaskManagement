@@ -2,7 +2,7 @@ using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using TaskManagement.Domain;
 
-namespace TaskManagement.Infra;
+namespace TaskManagement.Persistence;
 
 public sealed class AppDbContext : DbContext
 {

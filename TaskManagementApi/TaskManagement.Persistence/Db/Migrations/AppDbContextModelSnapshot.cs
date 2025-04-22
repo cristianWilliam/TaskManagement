@@ -3,20 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using TaskManagement.Infra;
+using TaskManagement.Persistence;
 
 #nullable disable
 
-namespace TaskManagement.Infra.Db.Migrations
+namespace TaskManagement.Persistence.Db.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250417190459_ChangeStatusType")]
-    partial class ChangeStatusType
+    partial class AppDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
