@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{1D4D7E93
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Domain.Tests", "TaskManagement.Domain.Tests\TaskManagement.Domain.Tests.csproj", "{F1AA644F-6B07-40A0-8056-CBD87A98DEEE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagement.Application.Tests", "TaskManagement.Application.Tests\TaskManagement.Application.Tests.csproj", "{F6BB71E1-8B67-4F59-A1B8-AD80459A3962}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,9 +53,14 @@ Global
 		{F1AA644F-6B07-40A0-8056-CBD87A98DEEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1AA644F-6B07-40A0-8056-CBD87A98DEEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1AA644F-6B07-40A0-8056-CBD87A98DEEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6BB71E1-8B67-4F59-A1B8-AD80459A3962}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6BB71E1-8B67-4F59-A1B8-AD80459A3962}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6BB71E1-8B67-4F59-A1B8-AD80459A3962}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6BB71E1-8B67-4F59-A1B8-AD80459A3962}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{F5FEF47C-5428-473F-9806-363DCD1964AD} = {1D4D7E93-8EE7-412B-AB93-6843C8FD420B}
 		{F1AA644F-6B07-40A0-8056-CBD87A98DEEE} = {1D4D7E93-8EE7-412B-AB93-6843C8FD420B}
+		{F6BB71E1-8B67-4F59-A1B8-AD80459A3962} = {1D4D7E93-8EE7-412B-AB93-6843C8FD420B}
 	EndGlobalSection
 EndGlobal

@@ -7,6 +7,12 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+            <_Parameter1>TaskManagement.Application.Tests</_Parameter1>
+        </AssemblyAttribute>
+    </ItemGroup>
+
+    <ItemGroup>
         <ProjectReference Include="..\TaskManagement.Domain\TaskManagement.Domain.csproj"/>
         <ProjectReference Include="..\TaskManagement.Persistence\TaskManagement.Persistence.csproj"/>
     </ItemGroup>
