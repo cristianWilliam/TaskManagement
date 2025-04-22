@@ -7,13 +7,10 @@ import { Card } from '../models/card.model';
 // Host component
 @Component({
   template: `
-    <app-task-manager-card
-      [card]="card()"
-      data-testid="task-card">
+    <app-task-manager-card [card]="card()" data-testid="task-card">
     </app-task-manager-card>
   `,
-  standalone: true,
-  imports: [TaskManagerCardComponent]
+  imports: [TaskManagerCardComponent],
 })
 class TestHostComponent {
   card = signal<Card>({
@@ -21,7 +18,7 @@ class TestHostComponent {
     description: 'Test Task',
     responsible: 'Test User',
     creationDateUtc: new Date('2025-04-20T10:00:00Z'),
-    status: 'Todo'
+    status: 'Todo',
   });
 }
 

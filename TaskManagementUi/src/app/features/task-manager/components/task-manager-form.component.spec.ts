@@ -16,11 +16,11 @@ import { CardForm } from '../models/card-form';
     <app-task-manager-form
       [isLoading]="isLoading()"
       (onAddCard)="handleAddCard($event)"
-      data-testid="task-form">
+      data-testid="task-form"
+    >
     </app-task-manager-form>
   `,
-  standalone: true,
-  imports: [TaskManagerFormComponent]
+  imports: [TaskManagerFormComponent],
 })
 class TestHostComponent {
   isLoading = signal<boolean>(false);

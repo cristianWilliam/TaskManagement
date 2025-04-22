@@ -9,8 +9,7 @@ import { Component } from '@angular/core';
       Drag content here
     </app-task-manager-card-drag-placeholder>
   `,
-  standalone: true,
-  imports: [TaskManagerCardDragPlaceholderComponent]
+  imports: [TaskManagerCardDragPlaceholderComponent],
 })
 class TestHostComponent {}
 

@@ -6,14 +6,11 @@ import { CardStatus } from '../models/card-status';
 // Host component
 @Component({
   template: `
-    <app-task-manager-header
-      [columnType]="columnType"
-      data-testid="header">
+    <app-task-manager-header [columnType]="columnType" data-testid="header">
       {{ headerTitle }}
     </app-task-manager-header>
   `,
-  standalone: true,
-  imports: [TaskManagerHeaderComponent]
+  imports: [TaskManagerHeaderComponent],
 })
 class TestHostComponent {
   columnType: CardStatus = 'Todo';
